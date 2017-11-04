@@ -30,6 +30,14 @@ class Edge {
           
           line(vertice.posX, vertice.posY, endVertex.posX, endVertex.posY);
           
+          fill(255);
+          ellipseMode(CENTER);
+          ellipse(wPosX, wPosY, 15, 15);
+          
+          fill(0);
+          PFont font = loadFont("YuGothicUI-Semilight-11.vlw");
+          textFont(font);
+          textAlign(CENTER, CENTER);
           text(edge.weight, wPosX, wPosY);
         }
       }
