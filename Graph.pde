@@ -2,7 +2,7 @@ class Graph {
   ArrayList<Edge> edges = new ArrayList();
   Set<Integer> vertexNums = new HashSet();
   ArrayList<Vertex> vertices = new ArrayList();
-  public int verticesDrawn = 0;
+  int verticesDrawn = 0;
   
   public void AddEdge(int startVertex, int endVertex, int weight) {
     Edge edge = new Edge(startVertex, endVertex, weight);
@@ -15,10 +15,7 @@ class Graph {
     for(int vertexNum: vertexNums) {
       Vertex vertex = new Vertex(vertexNum);
       vertices.add(vertex);
-      println(vertex.vertexNum);
     }
-    
-    for(Vertex vertex: vertices) println(vertex.vertexNum);
     
     int i = 0;
     
