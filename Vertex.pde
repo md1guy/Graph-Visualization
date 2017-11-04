@@ -11,7 +11,7 @@ class Vertex {
   }
   
   public void GetVertexPos(int verticesCount, int verticesProcessed) {
-      float angle = 360/verticesCount * verticesProcessed;
+      float angle = (360/verticesCount + 1) * verticesProcessed;
       float radius = 250;
       
       this.posX = cos(radians(angle)) * radius + width / 2;
