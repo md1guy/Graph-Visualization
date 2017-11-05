@@ -21,10 +21,10 @@ class Graph
     edges.add(edge);
   }
   
-  public void AddEdge(int vertexNum) 
+  /*public void AddEdge(int vertexNum) 
   {
     vertexNums.add(vertexNum);
-  }
+  }*/
   
   public void CreateVertices()
   {
@@ -84,7 +84,7 @@ class Graph
           verticesInMstNums.add(edge.endVertexNum);
           mstEdges.add(edge);
           
-          println("Added edge " + edge.startVertexNum + " -- " + edge.endVertexNum + ", " + edge.weight + " to MST.");
+          println("Added edge " + edge.startVertexNum + " -- " + edge.endVertexNum + ", v = " + edge.weight + " to MST.");
           
           firstEntry = false;
           continue;
@@ -111,7 +111,7 @@ class Graph
         break;
       }
       
-      println("We need moar edges, one more time.");
+      println("Looks like we need more edges, one more time.");
     }
     
     for(Edge edge: mstEdges) e.DrawEdge(edge, vertices, 0, 255, 0);
