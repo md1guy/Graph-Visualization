@@ -3,17 +3,19 @@ import java.util.*;
 Graph g = new Graph();
 Graph g2 = new Graph();
 
-void setup() {
+void setup() 
+{
   size(1024, 720);
   //fullScreen();
   background(0);
   Driver();
   //g.PrintVertices();
   g.DrawGraph();
-  g.MST();
+  g.Prims_MST();
 }
 
-void Driver() {
+void Driver() 
+{
    /*g.AddEdge(1, 2, 0);
    g.AddEdge(1, 4, 0);
    g.AddEdge(2, 3, 0);
@@ -40,7 +42,7 @@ void Driver() {
    g.AddEdge(9, 11, 4);
    g.AddEdge(10, 11, 4);
 
- /*g.AddEdge(1, 2, 0);
+  /*g.AddEdge(1, 2, 0);
   g.AddEdge(2, 3, 0);
   g.AddEdge(3, 4, 0);
   g.AddEdge(4, 5, 0);
@@ -59,13 +61,13 @@ void Driver() {
   g.AddEdge(17, 18, 0);
   g.AddEdge(18, 19, 0);
   g.AddEdge(19, 20, 0);
-  g.AddEdge(20, 1, 0);*/
+  g.AddEdge(20, 1, 0);
   
-  /*g.AddEdge(14, 2, 6);
-  g.AddEdge(14, 6, 6);
-  g.AddEdge(18, 10, 6);
-  g.AddEdge(18, 6, 6);
-  g.AddEdge(10, 2, 6);*/
+  g.AddEdge(14, 2, 0);
+  g.AddEdge(14, 6, 0);
+  g.AddEdge(18, 10, 0);
+  g.AddEdge(18, 6, 0);
+  g.AddEdge(10, 2, 0);*/
   
   /*g.AddEdge(5, 17, 0);
   g.AddEdge(9, 17, 0);
