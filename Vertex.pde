@@ -2,6 +2,7 @@ class Vertex {
   public int vertexNum;
   public float posX;
   public float posY;
+  Random random = new Random();
   
   Vertex() {
   }
@@ -11,15 +12,19 @@ class Vertex {
   }
   
   public void GetVertexPos(int verticesCount, int verticesProcessed) {
-      float angle = (360/verticesCount + 1) * verticesProcessed;
+      float angle = (360/verticesCount + 0) * verticesProcessed;
       float radius = 250;
       
       this.posX = cos(radians(angle)) * radius + width / 2;
       this.posY = sin(radians(angle)) * radius + height / 2;
+      
+      /*this.posX = random.nextFloat() * (width - 55) + 55;
+      this.posY = random.nextFloat() * (height - 55) + 55;*/
   }
   
   public void DrawVertex() {
       stroke(255);
+      //fill(0);
       noFill();
       
       ellipseMode(CENTER);
