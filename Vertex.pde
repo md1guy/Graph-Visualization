@@ -1,18 +1,24 @@
-class Vertex {
+class Vertex 
+{
   public int vertexNum;
   public float posX;
   public float posY;
-  Random random = new Random();
   
-  Vertex() {
+  final Random random = new Random();
+  
+  Vertex() 
+  {
+    
   }
   
-  Vertex(int vertexNum) {
+  Vertex(int vertexNum) 
+  {
     this.vertexNum = vertexNum;
   }
   
-  public void GetVertexPos(int verticesCount, int verticesProcessed) {
-      float angle = (360/verticesCount + 0) * verticesProcessed;
+  public void GetVertexPos(int verticesCount, int verticesProcessed) 
+  {
+      float angle = (360 / verticesCount + 0) * verticesProcessed;
       float radius = 250;
       
       this.posX = cos(radians(angle)) * radius + width / 2;
@@ -22,8 +28,10 @@ class Vertex {
       this.posY = random.nextFloat() * (height - 55) + 55;*/
   }
   
-  public void DrawVertex() {
+  public void DrawVertex() 
+  {
       stroke(255);
+      strokeWeight(2);
       //fill(0);
       noFill();
       
