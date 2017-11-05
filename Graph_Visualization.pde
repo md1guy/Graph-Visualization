@@ -10,8 +10,8 @@ void setup()
   background(0);
   Driver();
   //g.PrintVertices();
-  g.DrawGraph();
-  g.Prims_MST();
+  g.DrawGraph(); //<>//
+  g.Prims_MST();   //<>//
 }
 
 void Driver() 
@@ -41,6 +41,8 @@ void Driver()
    g.AddEdge(8, 11, 7);
    g.AddEdge(9, 11, 4);
    g.AddEdge(10, 11, 4);
+   
+  //g.AddEdge(12);
 
   /*g.AddEdge(1, 2, 0);
   g.AddEdge(2, 3, 0);
