@@ -103,7 +103,9 @@ class Graph
         }
       }
       
-    if(mstEdges.size() == (vertices.size() - 1)) break;
+      if(mstEdges.size() == (vertices.size() - 1)) break;
     }
+    
+    for(Edge edge: mstEdges) e.DrawEdge(edge, vertices, 0, 255, 0);
   }
 }
