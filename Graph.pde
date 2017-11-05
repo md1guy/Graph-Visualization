@@ -72,8 +72,6 @@ class Graph
   
   public void Prims_MST()
   {
-    for(Edge edge: wSortedEdges) println(edge.weight + " " + edge.startVertexNum + " " + edge.endVertexNum);
-    
     while(true)
     {
       for(Edge edge: wSortedEdges)
@@ -85,6 +83,8 @@ class Graph
           verticesInMstNums.add(edge.startVertexNum);
           verticesInMstNums.add(edge.endVertexNum);
           mstEdges.add(edge);
+          
+          println("Added edge " + edge.startVertexNum + " -- " + edge.endVertexNum + ", " + edge.weight + " to MST.");
           
           firstEntry = false;
           continue;
@@ -100,10 +100,18 @@ class Graph
           verticesInMstNums.add(edge.startVertexNum);
           verticesInMstNums.add(edge.endVertexNum);
           mstEdges.add(edge);
+          
+          println("Added edge " + edge.startVertexNum + " -- " + edge.endVertexNum + ", v = " + edge.weight + " to MST.");
         }
       }
       
-      if(mstEdges.size() == (vertices.size() - 1)) break;
+      if(mstEdges.size() == (vertices.size() - 1)) 
+      {
+        println("All done jerks, ez.");
+        break;
+      }
+      
+      println("We need moar edges, one more time.");
     }
     
     for(Edge edge: mstEdges) e.DrawEdge(edge, vertices, 0, 255, 0);
