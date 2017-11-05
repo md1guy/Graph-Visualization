@@ -1,7 +1,7 @@
 class Edge {
-  int startVertexNum;
-  int endVertexNum;
-  int weight;
+  public int startVertexNum;
+  public int endVertexNum;
+  public int weight;
   
   Edge() {
   }
