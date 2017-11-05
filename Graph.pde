@@ -38,7 +38,24 @@ class Graph {
   public void DrawGraph(){
     Edge e = new Edge();
     CreateVertices();
-    //for(Vertex vertex: vertices) println(vertex.vertexNum);
+    
     for(Vertex vertex: vertices) vertex.DrawVertex();
-    e.DrawEdge(vertices, edges); }
+    
+    e.DrawEdge(vertices, edges); 
+  }
+  
+  public void MST(){
+    int[] edgesWeights = new int[edges.size()];
+    int[] edgesStartVertices = new int[edges.size()];
+    int[] edgesEndVertices = new int[edges.size()];
+    
+    for(int i = 0; i < edges.size(); i++) edgesWeights[i] = edges.get(i).weight;
+    
+    Arrays.sort(edgesWeights);
+    Set<Integer> edgesWeightsSet = new HashSet();
+    
+    for(int edgeWeight: edgesWeights) edgesWeightsSet.add(edgeWeight);
+    
+    //for(int e: edgesWeightsSet) println(e);
+  }
 }
