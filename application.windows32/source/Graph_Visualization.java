@@ -127,7 +127,8 @@ class Graph
   
   int nodesCount, edgesCount;
   
-  public void AddEdge(int nodeA, int nodeB, int weight) { 
+  public void AddEdge(int nodeA, int nodeB, int weight) 
+  { 
     edges.add(new Edge(nodeA, nodeB, weight));
     
     nodeNums.add(nodeA);
@@ -294,7 +295,7 @@ class Node
   }
   public void settings() {  size(1024, 720); }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--stop-color=#cccccc", "Graph_Visualization" };
+    String[] appletArgs = new String[] { "--present", "--window-color=#080707", "--stop-color=#A3A5B7", "Graph_Visualization" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {

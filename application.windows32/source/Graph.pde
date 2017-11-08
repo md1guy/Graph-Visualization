@@ -8,7 +8,8 @@ class Graph
   
   int nodesCount, edgesCount;
   
-  public void AddEdge(int nodeA, int nodeB, int weight) { 
+  public void AddEdge(int nodeA, int nodeB, int weight) 
+  { 
     edges.add(new Edge(nodeA, nodeB, weight));
     
     nodeNums.add(nodeA);
