@@ -1,58 +1,49 @@
 class Edge implements Comparable<Edge>
 {
-  public int startVertexNum;
-  public int endVertexNum;
-  public int weight;
-  
-  Edge() 
+  int nodeAnum, nodeBnum, weight;
+  Edge()
   {
     
   }
   
-  public int compareTo(Edge obj)
+  public int compareTo(Edge compareEdge)
   {
-     return Integer.compare(this.weight, obj.weight);
+    return Integer.compare(this.weight, compareEdge.weight);
   }
   
-  public Edge(int startVertexNum, int endVertexNum, int weight) 
+  Edge(int nodeAnum, int nodeBnum, int weight)
   {
-    this.startVertexNum = startVertexNum;
-    this.endVertexNum = endVertexNum;
+    this.nodeAnum = nodeAnum;
+    this.nodeBnum = nodeBnum;
     this.weight = weight;
   }
   
-  public void DrawEdge(Edge edge, ArrayList<Vertex> vertices, int colourR, int colourG, int colourB)
+  public void DrawEdge(Set<Node> nodes, int colourR, int colourG, int colourB)
   {
-    Graph g = new Graph();
-    g.vertices = vertices;
+    Node nodeB = g.FindNode(this.nodeBnum);
+    //println(nodeB.nodeNum);
     
-    
-      int endVertexNum = edge.endVertexNum;
-      Vertex endVertex = g.FindVertix(endVertexNum);
-      
-      for(Vertex vertice: vertices){
+    for(Node node: nodes)
+    {
+      if(node.nodeNum == this.nodeAnum)
+      {
+        float wPosX = (node.posX + nodeB.posX) / 2;
+        float wPosY = (node.posY + nodeB.posY) / 2;
         
-        if(vertice.vertexNum == edge.startVertexNum) 
-        {
-          
-          float wPosX = (vertice.posX + endVertex.posX) / 2;
-          float wPosY = (vertice.posY + endVertex.posY) / 2;
-          
-          stroke(colourR, colourG, colourB);
-          strokeWeight(2);
-          line(vertice.posX, vertice.posY, endVertex.posX, endVertex.posY);
-          
-          fill(255);
-          ellipseMode(CENTER);
-          ellipse(wPosX, wPosY, 15, 15);
-          
-          fill(0);
-          PFont font = loadFont("YuGothicUI-Semilight-11.vlw");
-          textFont(font);
-          textAlign(CENTER, CENTER);
-          text(edge.weight, wPosX, wPosY);
-        }
+        stroke(colourR, colourG, colourB);
+        strokeWeight(2);
+        line(node.posX, node.posY, nodeB.posX, nodeB.posY);
+        
+        fill(255);
+        ellipseMode(CENTER);
+        ellipse(wPosX, wPosY, 15, 15);
+        
+        fill(0);
+        PFont font = loadFont("YuGothicUI-Semilight-11.vlw");
+        textFont(font);
+        textAlign(CENTER, CENTER);
+        text(this.weight, wPosX, wPosY);
       }
-    
+    }
   }
 }
