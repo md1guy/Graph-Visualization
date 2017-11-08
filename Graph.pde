@@ -1,119 +1,135 @@
-class Graph 
+class Graph
 {
   ArrayList<Edge> edges = new ArrayList();
-  ArrayList<Edge> wSortedEdges = edges;
-  ArrayList<Edge> mstEdges = new ArrayList();
-  
-  ArrayList<Vertex> vertices = new ArrayList();
-  Set<Integer> vertexNums = new HashSet();
-  Set<Integer> verticesInMstNums = new HashSet();
-  
-  Edge e = new Edge();
-  
+  SortedSet<Integer> nodeNums = new TreeSet();
+  Set<Node> nodes = new HashSet();
+
   final Random random = new Random();
   
-  public void AddEdge(int startVertex, int endVertex, int weight) 
+  int nodesCount, edgesCount;
+  
+  public void AddEdge(int nodeA, int nodeB, int weight)
   {
-    vertexNums.add(startVertex);
-    vertexNums.add(endVertex);
+    edges.add(new Edge(nodeA, nodeB, weight));
     
-    Edge edge = new Edge(startVertex, endVertex, weight);
-    edges.add(edge);
+    nodeNums.add(nodeA);
+    nodeNums.add(nodeB);
   }
   
-  /*public void AddEdge(int vertexNum) 
+  public Node FindNode(int num)
   {
-    vertexNums.add(vertexNum);
-  }*/
-  
-  public void CreateVertices()
-  {
+    Node nodeWithNum = new Node();
     
-    for(int vertexNum: vertexNums) 
+    for(Node node: nodes) 
     {
-      Vertex vertex = new Vertex(vertexNum);
-      vertices.add(vertex);
+      //println(node.nodeNum + " " + num);
+      if(node.nodeNum == num) return node;
     }
     
-    int i = 0;
-    
-    for(Vertex vertex: vertices) 
-    {
-      vertex.GetVertexPos(vertexNums.size(), i);
-      i++;
-    }
+    return nodeWithNum;
   }
-  
-  public Vertex FindVertix(int num)
+
+  public ArrayList<Edge> FindEdges(Set<Integer> availableNodeNums)
   {
-    Vertex vertexWithNum = new Vertex();
-    
-    for(Vertex vertex: vertices) 
+    ArrayList<Edge> edgesWithNode = new ArrayList();
+
+    for(int nodeNum: availableNodeNums)
     {
-      if(vertex.vertexNum == num)
-      return vertex;
+      for(Edge edge: edges)
+      {
+        if(edge.nodeAnum == nodeNum || edge.nodeBnum == nodeNum) edgesWithNode.add(edge);
+      }
     }
     
-    return vertexWithNum;
+    //for(Edge edge: edgesWithNode) println(edge.nodeAnum + " " + edge.nodeBnum);
+
+    return edgesWithNode;
   }
   
   public void DrawGraph()
   {
-    CreateVertices();
-    
-    for(Vertex vertex: vertices) vertex.DrawVertex();
-    
-    //for(Edge edge: edges) e.DrawEdge(edge, vertices, random.nextInt(256), random.nextInt(256), random.nextInt(256)); 
-    for(Edge edge: edges) e.DrawEdge(edge, vertices, 255, 255, 255);
-    Collections.sort(wSortedEdges);
+    DrawNodes();
+    DrawEdges(edges, 255, 255, 255);
   }
   
-  Boolean firstEntry = true;
-  
-  public void Prims_MST()
+  public void DrawNodes()
   {
-    while(true)
+    int i = 0;
+    
+    for(int nodeNum: nodeNums)
     {
-      for(Edge edge: wSortedEdges)
-      {
-        int check = 0;
-        
-        if(firstEntry) 
-        {
-          verticesInMstNums.add(edge.startVertexNum);
-          verticesInMstNums.add(edge.endVertexNum);
-          mstEdges.add(edge);
-          
-          println("Added edge " + edge.startVertexNum + " -- " + edge.endVertexNum + ", v = " + edge.weight + " to MST.");
-          
-          firstEntry = false;
-          continue;
-        }
-        
-        for(int verticeNum: verticesInMstNums)
-        {
-          if(verticeNum == edge.startVertexNum || verticeNum == edge.endVertexNum) check++;
-        }
-        
-        if(check == 1)
-        {
-          verticesInMstNums.add(edge.startVertexNum);
-          verticesInMstNums.add(edge.endVertexNum);
-          mstEdges.add(edge);
-          
-          println("Added edge " + edge.startVertexNum + " -- " + edge.endVertexNum + ", v = " + edge.weight + " to MST.");
-        }
-      }
-      
-      if(mstEdges.size() == (vertices.size() - 1)) 
-      {
-        println("All done jerks, ez.");
-        break;
-      }
-      
-      println("Looks like we need more edges, one more time.");
+      Node node = new Node(nodeNum);
+      nodes.add(node);
+      node.GetNodePos(nodeNums.size(), i);
+      node.DrawNode();
+      i++;
+    }
+  }
+  
+  public void DrawEdges(ArrayList<Edge> edges, int colourR, int colourG, int colourB)
+  {
+    for(Edge edge: edges)
+    {
+      edge.DrawEdge(nodes, colourR, colourG, colourB);
     }
     
-    for(Edge edge: mstEdges) e.DrawEdge(edge, vertices, 0, 255, 0);
+    //for(Edge edge: edges) println(edge.nodeAnum + " " + edge.nodeBnum + " " + edge.weight);
   }
+
+  public void MST()
+  {
+    ArrayList<Edge> possibleEdges = new ArrayList();
+    Set<Integer> mstNodeNums = new HashSet();
+    ArrayList<Edge> mstEdges = new ArrayList();
+    int mstWeight = 0;
+
+    Boolean firstNode = true;
+
+    while(mstEdges.size() != nodes.size() - 1)
+    {
+      if(firstNode)
+      {
+        int i = 0;
+        int k = random.nextInt(nodeNums.size());
+
+        for(Integer nodeNum: nodeNums)
+        {
+          if (i == k) mstNodeNums.add(nodeNum);
+          i++;
+        }
+
+        for(int nodeNum: mstNodeNums) println("Starting from node: " + nodeNum);
+
+        firstNode = false;
+      }
+
+      possibleEdges = FindEdges(mstNodeNums);
+      
+      Collections.sort(possibleEdges);
+
+      for(Edge edge: possibleEdges)
+      {
+        int connections = 0;
+        
+        for(int node: mstNodeNums) 
+        {
+          if(edge.nodeAnum == node || edge.nodeBnum == node) connections++;
+        }
+
+        if(connections != 1) continue;
+
+        mstEdges.add(edge);
+        mstNodeNums.add(edge.nodeAnum);
+        mstNodeNums.add(edge.nodeBnum);
+        mstWeight += edge.weight;
+
+        println("Added edge " + edge.nodeAnum + " - " + edge.nodeBnum + ", w = " + edge.weight + " to MST.");
+
+        break;
+      }
+    }
+
+    println("Total weight of MST = " + mstWeight);
+    DrawEdges(mstEdges, 0, 255, 0);
+  }  
 }
