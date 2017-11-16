@@ -8,12 +8,12 @@ class Graph
   
   int nodesCount, edgesCount;
   
-  public void AddEdge(int nodeA, int nodeB, int weight)
-  {
+  public void AddEdge(int nodeA, int nodeB, int weight) 
+  { 
     edges.add(new Edge(nodeA, nodeB, weight));
     
     nodeNums.add(nodeA);
-    nodeNums.add(nodeB);
+    nodeNums.add(nodeB); 
   }
   
   public Node FindNode(int num)
@@ -106,7 +106,7 @@ class Graph
       possibleEdges = FindEdges(mstNodeNums);
       
       Collections.sort(possibleEdges);
-
+      
       for(Edge edge: possibleEdges)
       {
         int connections = 0;
