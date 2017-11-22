@@ -49,7 +49,7 @@ class Graph
   public void DrawGraph()
   {
     DrawNodes();
-    DrawEdges(edges, 255, 255, 255);
+    DrawEdges(edges, 255, 255, 255, 2);
   }
   
   public void DrawNodes()
@@ -66,11 +66,11 @@ class Graph
     }
   }
   
-  public void DrawEdges(ArrayList<Edge> edges, int colourR, int colourG, int colourB)
+  public void DrawEdges(ArrayList<Edge> edges, int colourR, int colourG, int colourB, int weight)
   {
     for(Edge edge: edges)
     {
-      edge.DrawEdge(nodes, colourR, colourG, colourB);
+      edge.DrawEdge(nodes, colourR, colourG, colourB, weight);
     }
     
     //for(Edge edge: edges) println(edge.nodeAnum + " " + edge.nodeBnum + " " + edge.weight);
@@ -130,6 +130,6 @@ class Graph
     }
 
     println("Total weight of MST = " + mstWeight);
-    DrawEdges(mstEdges, 0, 255, 0);
+    DrawEdges(mstEdges, 0, 255, 0, 4);
   }  
 }

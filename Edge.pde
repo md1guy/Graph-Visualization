@@ -18,7 +18,7 @@ class Edge implements Comparable<Edge>
     this.weight = weight;
   }
   
-  public void DrawEdge(Set<Node> nodes, int colourR, int colourG, int colourB)
+  public void DrawEdge(Set<Node> nodes, int colourR, int colourG, int colourB, int weight)
   {
     Node nodeB = g.FindNode(this.nodeBnum);
     //println(nodeB.nodeNum);
@@ -31,7 +31,7 @@ class Edge implements Comparable<Edge>
         float wPosY = (node.posY + nodeB.posY) / 2;
         
         stroke(colourR, colourG, colourB);
-        strokeWeight(2);
+        strokeWeight(weight);
         line(node.posX, node.posY, nodeB.posX, nodeB.posY);
         
         fill(255);
